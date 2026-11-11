@@ -22,7 +22,6 @@ module tb_top_uart_alu ();
 
   // Variables internas del Testbench
   reg [NB_DATA-1:0] rx_byte_to_send;
-  reg [NB_DATA-1:0] tx_byte_received;
   integer i;
 
   // Instancia del Top-Level (DUT - Device Under Test)
@@ -88,9 +87,9 @@ module tb_top_uart_alu ();
         #(BIT_PERIOD / 2);
         #(BIT_PERIOD);
       end else begin
-        // El start comenzó mientras se transmitía el último bit de RX.
-        // En este punto estamos aproximadamente en su centro.
-        #(BIT_PERIOD / 2);
+        // El START ya comenzó antes de entrar a esta tarea.
+        // Espera el resto del START y el centro del primer bit de datos.
+        #(BIT_PERIOD + BIT_PERIOD / 2);
       end
       $display("[%0t ns] [FPGA -> TB] Detectado Bit de START en TX.", $time);
 
@@ -102,6 +101,34 @@ module tb_top_uart_alu ();
 
       $display("[%0t ns] [FPGA -> TB] Resultado Recibido desde la ALU: 0x%h (%0d)", $time,
                data_out, data_out);
+    end
+  endtask
+
+  // Ejecuta una transacción completa: A, B, opcode y resultado.
+  task run_uart_test;
+    input [7:0] a;
+    input [7:0] b;
+    input [7:0] opcode;
+    input [7:0] expected;
+    reg [7:0] received;
+    begin
+      $display("--- PRUEBA UART: A=0x%h B=0x%h OPCODE=0x%h ---", a, b, opcode);
+
+      send_uart_byte(a);
+      #(BIT_PERIOD * 2);
+      send_uart_byte(b);
+      #(BIT_PERIOD * 2);
+      send_uart_byte(opcode);
+
+      receive_uart_byte(received);
+
+      if (received == expected) $display("[RESULTADO]: PASS! (Se recibio 0x%h)\n", received);
+      else begin
+        $display("[RESULTADO]: FAIL! (Se esperaba 0x%h, se obtuvo 0x%h)\n", expected, received);
+        $fatal(1, "La prueba UART fallo para opcode 0x%h", opcode);
+      end
+
+      #(BIT_PERIOD * 5);
     end
   endtask
 
@@ -121,57 +148,16 @@ module tb_top_uart_alu ();
     $display("   INICIO DE SIMULACION COMPLETA TP2 (UART + ALU)   ");
     $display("=======================================================\n");
 
-    // -------------------------------------------------------------
-    // PRUEBA 1: Suma (ADD -> Opcode 0x20 / 6'b100000)
-    // Operando A = 5  (0x05)
-    // Operando B = 3  (0x03)
-    // Esperado   = 8  (0x08)
-    // -------------------------------------------------------------
-    $display("--- PRUEBA 1: SUMA (5 + 3 = 8) ---");
-    send_uart_byte(8'h05);  // Operando A
-    #(BIT_PERIOD * 2);
-
-    send_uart_byte(8'h03);  // Operando B
-    #(BIT_PERIOD * 2);
-
-    send_uart_byte(8'h20);  // Opcode ADD (6'b100000)
-
-    // Captura y verifica la respuesta que envía la FPGA
-    receive_uart_byte(tx_byte_received);
-
-    if (tx_byte_received == 8'h08)
-      $display("[RESULTADO]: PASS! (Suma correcta: %0d)\n", tx_byte_received);
-    else begin
-      $display("[RESULTADO]: FAIL! (Se esperaba 8, se obtuvo %0d)\n", tx_byte_received);
-      $fatal(1, "La prueba de suma fallo");
-    end
-
-    #(BIT_PERIOD * 5);
-
-    // -------------------------------------------------------------
-    // PRUEBA 2: Resta (SUB -> Opcode 0x22 / 6'b100010)
-    // Operando A = 15 (0x0F)
-    // Operando B = 6  (0x06)
-    // Esperado   = 9  (0x09)
-    // -------------------------------------------------------------
-    $display("--- PRUEBA 2: RESTA (15 - 6 = 9) ---");
-    send_uart_byte(8'h0F);  // Operando A
-    #(BIT_PERIOD * 2);
-
-    send_uart_byte(8'h06);  // Operando B
-    #(BIT_PERIOD * 2);
-
-    send_uart_byte(8'h22);  // Opcode SUB (6'b100010)
-
-    // Captura la respuesta
-    receive_uart_byte(tx_byte_received);
-
-    if (tx_byte_received == 8'h09)
-      $display("[RESULTADO]: PASS! (Resta correcta: %0d)\n", tx_byte_received);
-    else begin
-      $display("[RESULTADO]: FAIL! (Se esperaba 9, se obtuvo %0d)\n", tx_byte_received);
-      $fatal(1, "La prueba de resta fallo");
-    end
+    // ADD, SUB, AND, OR, XOR, NOR, SRL, SRA y opcode invalido.
+    run_uart_test(8'h05, 8'h03, 8'h20, 8'h08);
+    run_uart_test(8'h0F, 8'h06, 8'h22, 8'h09);
+    run_uart_test(8'hF0, 8'h0F, 8'h24, 8'h00);
+    run_uart_test(8'hF0, 8'h0F, 8'h25, 8'hFF);
+    run_uart_test(8'hF0, 8'h0F, 8'h26, 8'hFF);
+    run_uart_test(8'hF0, 8'h0F, 8'h27, 8'h00);
+    run_uart_test(8'h80, 8'h02, 8'h02, 8'h20);
+    run_uart_test(8'h80, 8'h02, 8'h03, 8'hE0);
+    run_uart_test(8'hAA, 8'h55, 8'h00, 8'h00);
 
     #(BIT_PERIOD * 10);
     $display("=======================================================");

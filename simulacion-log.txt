@@ -1,0 +1,232 @@
+run all
+INFO: [Common 17-41] Interrupt caught. Command should exit soon.
+run: Time (s): cpu = 00:00:36 ; elapsed = 00:02:34 . Memory (MB): peak = 10239.777 ; gain = 0.000 ; free physical = 813 ; free virtual = 13767
+INFO: [Common 17-344] 'run' was cancelled
+reset_run synth_1
+INFO: [Project 1-1161] Replacing file /home/dario/Escritorio/arquitectura/uart/project_2/project_2.srcs/utils_1/imports/synth_1/top_ALU.dcp with file /home/dario/Escritorio/arquitectura/uart/project_2/project_2.runs/synth_1/top_uart_alu.dcp
+launch_runs synth_1 -jobs 4
+[Wed Nov 11 19:01:09 2026] Launched synth_1...
+Run output will be captured here: /home/dario/Escritorio/arquitectura/uart/project_2/project_2.runs/synth_1/runme.log
+close_sim
+INFO: xsimkernel Simulation Memory Usage: 102344 KB (Peak: 159616 KB), Simulation CPU Usage: 162060 ms
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-12493] Simulation top is 'tb_top_uart_alu'
+INFO: [Vivado 12-5682] Launching behavioral simulation in '/home/dario/Escritorio/arquitectura/uart/project_2/project_2.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-72] Using boost library from '/tools/Xilinx/Vivado/2024.1/tps/boost_1_72_0'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_top_uart_alu' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in '/home/dario/Escritorio/arquitectura/uart/project_2/project_2.sim/sim_1/behav/xsim'
+xvlog --incr --relax -prj tb_top_uart_alu_vlog.prj
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/dario/Escritorio/arquitectura/uart/project_2/project_2.srcs/sources_1/new/ALU.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ALU
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/dario/Escritorio/arquitectura/uart/project_2/project_2.srcs/sources_1/new/baud_rate_generator.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module baud_rate_generator
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/dario/Escritorio/arquitectura/uart/project_2/project_2.srcs/sources_1/new/interface_circuit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module interface_circuit
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/dario/Escritorio/arquitectura/uart/project_2/project_2.srcs/sources_1/new/top_ALU.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top_uart_alu
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/dario/Escritorio/arquitectura/uart/project_2/project_2.srcs/sources_1/new/uart_rx.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module uart_rx
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/dario/Escritorio/arquitectura/uart/project_2/project_2.srcs/sources_1/new/uart_tx.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module uart_tx
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/dario/Escritorio/arquitectura/uart/project_2/project_2.srcs/sim_1/new/tb_top_uart_alu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_top_uart_alu
+Waiting for jobs to finish...
+No pending jobs, compilation finished.
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in '/home/dario/Escritorio/arquitectura/uart/project_2/project_2.sim/sim_1/behav/xsim'
+xelab --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_top_uart_alu_behav xil_defaultlib.tb_top_uart_alu xil_defaultlib.glbl -log elaborate.log
+Vivado Simulator v2024.1
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: /tools/Xilinx/Vivado/2024.1/bin/unwrapped/lnx64.o/xelab --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_top_uart_alu_behav xil_defaultlib.tb_top_uart_alu xil_defaultlib.glbl -log elaborate.log 
+Using 8 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.baud_rate_generator
+Compiling module xil_defaultlib.uart_rx
+Compiling module xil_defaultlib.uart_tx
+Compiling module xil_defaultlib.interface_circuit
+Compiling module xil_defaultlib.ALU
+Compiling module xil_defaultlib.top_uart_alu_default
+Compiling module xil_defaultlib.tb_top_uart_alu
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot tb_top_uart_alu_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '3' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in '/home/dario/Escritorio/arquitectura/uart/project_2/project_2.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "tb_top_uart_alu_behav -key {Behavioral:sim_1:Functional:tb_top_uart_alu} -tclbatch {tb_top_uart_alu.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Time resolution is 1 ps
+source tb_top_uart_alu.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+
+=======================================================
+   INICIO DE SIMULACION COMPLETA TP2 (UART + ALU)   
+=======================================================
+
+--- PRUEBA UART: A=0x05 B=0x03 OPCODE=0x20 ---
+[300000 ns] [TB -> FPGA] Enviando Byte: 0x05 (5)
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'tb_top_uart_alu_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 10246.754 ; gain = 6.977 ; free physical = 1982 ; free virtual = 13354
+run all
+[498875000 ns] RX done: 0x05
+[521900000 ns] [TB -> FPGA] Byte enviado correctamente.
+[626220000 ns] [TB -> FPGA] Enviando Byte: 0x03 (3)
+[1124795000 ns] RX done: 0x03
+[1147820000 ns] [TB -> FPGA] Byte enviado correctamente.
+[1252140000 ns] [TB -> FPGA] Enviando Byte: 0x20 (32)
+[1750715000 ns] RX done: 0x20
+[1750735000 ns] TX start: 0x08
+[1773740000 ns] [TB -> FPGA] Byte enviado correctamente.
+[1851980000 ns] [FPGA -> TB] Detectado Bit de START en TX.
+[2269260000 ns] [FPGA -> TB] Resultado Recibido desde la ALU: 0x08 (8)
+[RESULTADO]: PASS! (Se recibio 0x08)
+
+--- PRUEBA UART: A=0x0f B=0x06 OPCODE=0x22 ---
+[2530060000 ns] [TB -> FPGA] Enviando Byte: 0x0f (15)
+[3028635000 ns] RX done: 0x0f
+[3051660000 ns] [TB -> FPGA] Byte enviado correctamente.
+[3155980000 ns] [TB -> FPGA] Enviando Byte: 0x06 (6)
+[3654555000 ns] RX done: 0x06
+[3677580000 ns] [TB -> FPGA] Byte enviado correctamente.
+[3781900000 ns] [TB -> FPGA] Enviando Byte: 0x22 (34)
+[4280475000 ns] RX done: 0x22
+[4280495000 ns] TX start: 0x09
+[4303500000 ns] [TB -> FPGA] Byte enviado correctamente.
+[4381740000 ns] [FPGA -> TB] Detectado Bit de START en TX.
+[4799020000 ns] [FPGA -> TB] Resultado Recibido desde la ALU: 0x09 (9)
+[RESULTADO]: PASS! (Se recibio 0x09)
+
+--- PRUEBA UART: A=0xf0 B=0x0f OPCODE=0x24 ---
+[5059820000 ns] [TB -> FPGA] Enviando Byte: 0xf0 (240)
+[5558395000 ns] RX done: 0xf0
+[5581420000 ns] [TB -> FPGA] Byte enviado correctamente.
+[5685740000 ns] [TB -> FPGA] Enviando Byte: 0x0f (15)
+[6184315000 ns] RX done: 0x0f
+[6207340000 ns] [TB -> FPGA] Byte enviado correctamente.
+[6311660000 ns] [TB -> FPGA] Enviando Byte: 0x24 (36)
+[6810235000 ns] RX done: 0x24
+[6810255000 ns] TX start: 0x00
+[6833260000 ns] [TB -> FPGA] Byte enviado correctamente.
+[6911500000 ns] [FPGA -> TB] Detectado Bit de START en TX.
+[7328780000 ns] [FPGA -> TB] Resultado Recibido desde la ALU: 0x00 (0)
+[RESULTADO]: PASS! (Se recibio 0x00)
+
+--- PRUEBA UART: A=0xf0 B=0x0f OPCODE=0x25 ---
+[7589580000 ns] [TB -> FPGA] Enviando Byte: 0xf0 (240)
+[8088155000 ns] RX done: 0xf0
+[8111180000 ns] [TB -> FPGA] Byte enviado correctamente.
+[8215500000 ns] [TB -> FPGA] Enviando Byte: 0x0f (15)
+[8714075000 ns] RX done: 0x0f
+[8737100000 ns] [TB -> FPGA] Byte enviado correctamente.
+[8841420000 ns] [TB -> FPGA] Enviando Byte: 0x25 (37)
+[9339995000 ns] RX done: 0x25
+[9340015000 ns] TX start: 0xff
+[9363020000 ns] [TB -> FPGA] Byte enviado correctamente.
+[9441260000 ns] [FPGA -> TB] Detectado Bit de START en TX.
+[9858540000 ns] [FPGA -> TB] Resultado Recibido desde la ALU: 0xff (255)
+[RESULTADO]: PASS! (Se recibio 0xff)
+
+--- PRUEBA UART: A=0xf0 B=0x0f OPCODE=0x26 ---
+[10119340000 ns] [TB -> FPGA] Enviando Byte: 0xf0 (240)
+[10617915000 ns] RX done: 0xf0
+[10640940000 ns] [TB -> FPGA] Byte enviado correctamente.
+[10745260000 ns] [TB -> FPGA] Enviando Byte: 0x0f (15)
+[11243835000 ns] RX done: 0x0f
+[11266860000 ns] [TB -> FPGA] Byte enviado correctamente.
+[11371180000 ns] [TB -> FPGA] Enviando Byte: 0x26 (38)
+[11869755000 ns] RX done: 0x26
+[11869775000 ns] TX start: 0xff
+[11892780000 ns] [TB -> FPGA] Byte enviado correctamente.
+[11971020000 ns] [FPGA -> TB] Detectado Bit de START en TX.
+[12388300000 ns] [FPGA -> TB] Resultado Recibido desde la ALU: 0xff (255)
+[RESULTADO]: PASS! (Se recibio 0xff)
+
+--- PRUEBA UART: A=0xf0 B=0x0f OPCODE=0x27 ---
+[12649100000 ns] [TB -> FPGA] Enviando Byte: 0xf0 (240)
+[13147675000 ns] RX done: 0xf0
+[13170700000 ns] [TB -> FPGA] Byte enviado correctamente.
+[13275020000 ns] [TB -> FPGA] Enviando Byte: 0x0f (15)
+[13773595000 ns] RX done: 0x0f
+[13796620000 ns] [TB -> FPGA] Byte enviado correctamente.
+[13900940000 ns] [TB -> FPGA] Enviando Byte: 0x27 (39)
+[14399515000 ns] RX done: 0x27
+[14399535000 ns] TX start: 0x00
+[14422540000 ns] [TB -> FPGA] Byte enviado correctamente.
+[14500780000 ns] [FPGA -> TB] Detectado Bit de START en TX.
+[14918060000 ns] [FPGA -> TB] Resultado Recibido desde la ALU: 0x00 (0)
+[RESULTADO]: PASS! (Se recibio 0x00)
+
+--- PRUEBA UART: A=0x80 B=0x02 OPCODE=0x02 ---
+[15178860000 ns] [TB -> FPGA] Enviando Byte: 0x80 (128)
+[15677435000 ns] RX done: 0x80
+[15700460000 ns] [TB -> FPGA] Byte enviado correctamente.
+[15804780000 ns] [TB -> FPGA] Enviando Byte: 0x02 (2)
+[16303355000 ns] RX done: 0x02
+[16326380000 ns] [TB -> FPGA] Byte enviado correctamente.
+[16430700000 ns] [TB -> FPGA] Enviando Byte: 0x02 (2)
+[16929275000 ns] RX done: 0x02
+[16929295000 ns] TX start: 0x20
+[16952300000 ns] [TB -> FPGA] Byte enviado correctamente.
+[17030540000 ns] [FPGA -> TB] Detectado Bit de START en TX.
+[17447820000 ns] [FPGA -> TB] Resultado Recibido desde la ALU: 0x20 (32)
+[RESULTADO]: PASS! (Se recibio 0x20)
+
+--- PRUEBA UART: A=0x80 B=0x02 OPCODE=0x03 ---
+[17708620000 ns] [TB -> FPGA] Enviando Byte: 0x80 (128)
+[18207195000 ns] RX done: 0x80
+[18230220000 ns] [TB -> FPGA] Byte enviado correctamente.
+[18334540000 ns] [TB -> FPGA] Enviando Byte: 0x02 (2)
+[18833115000 ns] RX done: 0x02
+[18856140000 ns] [TB -> FPGA] Byte enviado correctamente.
+[18960460000 ns] [TB -> FPGA] Enviando Byte: 0x03 (3)
+[19459035000 ns] RX done: 0x03
+[19459055000 ns] TX start: 0xe0
+[19482060000 ns] [TB -> FPGA] Byte enviado correctamente.
+[19560300000 ns] [FPGA -> TB] Detectado Bit de START en TX.
+[19977580000 ns] [FPGA -> TB] Resultado Recibido desde la ALU: 0xe0 (224)
+[RESULTADO]: PASS! (Se recibio 0xe0)
+
+--- PRUEBA UART: A=0xaa B=0x55 OPCODE=0x00 ---
+[20238380000 ns] [TB -> FPGA] Enviando Byte: 0xaa (170)
+[20736955000 ns] RX done: 0xaa
+[20759980000 ns] [TB -> FPGA] Byte enviado correctamente.
+[20864300000 ns] [TB -> FPGA] Enviando Byte: 0x55 (85)
+[21362875000 ns] RX done: 0x55
+[21385900000 ns] [TB -> FPGA] Byte enviado correctamente.
+[21490220000 ns] [TB -> FPGA] Enviando Byte: 0x00 (0)
+[21988795000 ns] RX done: 0x00
+[21988815000 ns] TX start: 0x00
+[22011820000 ns] [TB -> FPGA] Byte enviado correctamente.
+[22090060000 ns] [FPGA -> TB] Detectado Bit de START en TX.
+[22507340000 ns] [FPGA -> TB] Resultado Recibido desde la ALU: 0x00 (0)
+[RESULTADO]: PASS! (Se recibio 0x00)
+
+=======================================================
+             FIN DE SIMULACION COMPLETA                
+=======================================================
+
+$finish called at time : 23289740 ns : File "/home/dario/Escritorio/arquitectura/uart/project_2/project_2.srcs/sim_1/new/tb_top_uart_alu.v" Line 166
+run: Time (s): cpu = 00:00:19 ; elapsed = 00:00:44 . Memory (MB): peak = 10246.754 ; gain = 0.000 ; free physical = 1672 ; free virtual = 13335
